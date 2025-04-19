@@ -3,11 +3,17 @@ package org.example;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Stack;
 
-
+/**
+ * Главный класс приложения - консольный математический калькулятор.
+ * Позволяет вычислять выражения с переменными и функциями.
+ */
 public class App {
 
+    /**
+     * Точка входа в приложение.
+     * @param args аргументы командной строки (не используются)
+     */
     public static void main(String[] args) {
         Scanner cin = new Scanner(System.in);
         System.out.println("Математический калькулятор");
@@ -30,6 +36,13 @@ public class App {
         cin.close();
     }
 
+    /**
+     * Запрашивает значения переменных у пользователя.
+     *
+     * @param expression строка с математическим выражением
+     * @param input сканер для ввода значений
+     * @return map значений переменных
+     */
     private static Map<String, Double> requestVariableValues(String expression, Scanner input) {
         Map<String, Double> variables = new HashMap<>();
         char[] expressionChars = expression.toCharArray();

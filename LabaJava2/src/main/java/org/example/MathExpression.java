@@ -3,11 +3,28 @@ package org.example;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * Класс для вычисления математических выражений.
+ * Поддерживает базовые арифметические операции, функции и переменные.
+ */
 public class MathExpression {
 
+    /**
+     * Проверяет, является ли символ математическим оператором.
+     *
+     * @param c проверяемый символ
+     * @return true если символ является оператором (+, -, *, /, ^), иначе false
+     */
     private static boolean isOperator(char c) {
         return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
     }
+
+    /**
+     * Определяет приоритет оператора для правильного вычисления выражений.
+     *
+     * @param operation символ оператора
+     *@return числовой приоритет (1 для +/-, 2 для * и /, 3 для ^ )
+    */
 
     private static int priorityOfOperator(char operation) {
         switch (operation) {
@@ -20,6 +37,16 @@ public class MathExpression {
         }
     }
 
+    /**
+     * Выполняет математическую операцию над двумя числами.
+     *
+     * @param operation оператор (+, -, *, /, ^)
+     * @param secondArg второй операнд
+     * @param firstArg первый операнд
+     * @return результат операции
+     * @throws ArithmeticException при делении на ноль
+     * @throws IllegalArgumentException при неизвестном операторе
+     */
     private static double operationResult(char operation, double secondArg, double firstArg) {
         switch (operation) {
             case '+': return firstArg + secondArg;
@@ -33,6 +60,12 @@ public class MathExpression {
         }
     }
 
+    /**
+     * Проверяет корректность математического выражения.
+     *
+     * @param input массив символов выражения
+     * @return true если выражение синтаксически корректно, иначе false
+     */
     private static boolean validate(char[] input) {
         Stack<Character> stack = new Stack<>();
 
@@ -52,6 +85,15 @@ public class MathExpression {
         return stack.isEmpty();
     }
 
+    /**
+     * Вычисляет значение математического выражения.
+     *
+     * @param expression строка с математическим выражением
+     * @param variables карта значений переменных
+     * @return результат вычисления
+     * @throws IllegalArgumentException при некорректном выражении или неизвестной переменной
+     * @throws ArithmeticException при математических ошибках (деление на ноль и т.д.)
+     */
     public static double calculate(String expression, Map<String, Double> variables) {
         char[] tokens = expression.toCharArray();
 
@@ -138,6 +180,12 @@ public class MathExpression {
         return numbers.pop();
     }
 
+    /**
+     * Проверяет, является ли строка именем поддерживаемой функции.
+     *
+     * @param name проверяемая строка
+     * @return true если имя соответствует поддерживаемой функции, иначе false
+     */
     public static boolean isFunction(String name) {
         try {
             MathOperations.getOperationByUserInput(name);
