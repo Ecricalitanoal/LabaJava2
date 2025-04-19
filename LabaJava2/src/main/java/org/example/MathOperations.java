@@ -48,13 +48,5 @@ enum MathOperations {
         throw new IllegalArgumentException("Математическая операция не найдена");
     }
 
-    public static boolean isFunction(String input) {
-        try {
-            getOperationByUserInput(input);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
 
 }
